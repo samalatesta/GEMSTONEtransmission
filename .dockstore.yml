@@ -1,4 +1,4 @@
-version: 1.2
+version: 1.0
 workflows:
   - name: beast
     subclass: WDL
@@ -12,6 +12,14 @@ workflows:
     subclass: WDL
     primaryDescriptorPath: /workflows/workflow_prep_beast.wdl  # absolute path
     readMePath: /workflows/workflow_prep_beast.wdl # absolute path
+    authors:
+      - name: Samantha Malatesta
+        email: smalates@broadinstitute.org
+
+  - name: hello
+    subclass: WDL
+    primaryDescriptorPath: /workflows/hello.wdl  # absolute path
+    readMePath: /workflows/hello.wdl # absolute path
     authors:
       - name: Samantha Malatesta
         email: smalates@broadinstitute.org
