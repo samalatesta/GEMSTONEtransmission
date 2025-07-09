@@ -1,7 +1,7 @@
 version 1.0
 
-    task combine_fasta {
-        input {
+task combine_fasta {
+    input {
             Array[File] fasta_files  # An array of FASTA files
     
         }
@@ -19,17 +19,18 @@ version 1.0
         }
 
     }
+
 task xmlR {
       input {
            File fasta
            Array[String] ids
            Array[String] dates
            Int? chain_length=100
-}
+        }
 
-command<<<
-    R --no-save --args ~{fasta} ~{sep=" " ids} ~{sep=" " dates}<<Rscript
-    args <- commandArgs(trailingOnly = TRUE)
+    command<<<
+            R --no-save --args ~{fasta} ~{sep=" " ids} ~{sep=" " dates}<<Rscript
+            args <- commandArgs(trailingOnly = TRUE)
 
             idsstart = 2
             idsend = ((length(args)-1)/2)+1
@@ -103,7 +104,7 @@ runtime {
 
         output {
     
-        #File combined_fasts = combine_fasta.combined_fasta
+        File combined_fasts = combine_fasta.combined_fasta
         File xml = xmlR.xml
        
 
