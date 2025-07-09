@@ -21,7 +21,7 @@ task beast {
   }
 
   runtime {
-    docker: "tomkinsc/beast2-beagle-cuda:latest"
+    docker: "tomkinsc/beast2-beagle-cuda"
   }
 }
 
