@@ -8,3 +8,10 @@ workflows:
       - name: Samantha Malatesta
         email: smalates@broadinstitute.org
   
+  - name: prep_beast
+    subclass: WDL
+    primaryDescriptorPath: /workflows/workflow_prep_beast.wdl  # absolute path
+    readMePath: /workflows/workflow_prep_beast.wdl # absolute path
+    authors:
+      - name: Samantha Malatesta
+        email: smalates@broadinstitute.org
