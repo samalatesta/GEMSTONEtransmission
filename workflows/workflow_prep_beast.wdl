@@ -73,7 +73,7 @@ runtime {
 
 
 
-    workflow beast {
+    workflow prep_beast {
         meta {
                 author: "Samantha Malatesta"
                 email: "smalates@broadinstitute.org"
