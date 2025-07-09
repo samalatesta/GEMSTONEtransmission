@@ -16,7 +16,7 @@ workflows:
       - name: Samantha Malatesta
         email: smalates@broadinstitute.org
 
-  - name: hello
+  - name: hello2
     subclass: WDL
     primaryDescriptorPath: /workflows/hello.wdl  # absolute path
     readMePath: /workflows/hello.wdl # absolute path
