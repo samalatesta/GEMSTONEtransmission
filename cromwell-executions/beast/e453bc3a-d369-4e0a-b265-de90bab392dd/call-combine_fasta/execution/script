@@ -1,0 +1,40 @@
+#!/bin/bash
+
+cd /cromwell-executions/beast/e453bc3a-d369-4e0a-b265-de90bab392dd/call-combine_fasta/execution
+tmpDir=$(mktemp -d "$PWD"/tmp.XXXXXX)
+chmod 777 "$tmpDir"
+export _JAVA_OPTIONS=-Djava.io.tmpdir="$tmpDir"
+export TMPDIR="$tmpDir"
+
+
+(
+cd /cromwell-executions/beast/e453bc3a-d369-4e0a-b265-de90bab392dd/call-combine_fasta/execution
+
+)
+
+
+oute453bc3a="${tmpDir}/out.$$" erre453bc3a="${tmpDir}/err.$$"
+mkfifo "$oute453bc3a" "$erre453bc3a"
+trap 'rm "$oute453bc3a" "$erre453bc3a"' EXIT
+touch '/cromwell-executions/beast/e453bc3a-d369-4e0a-b265-de90bab392dd/call-combine_fasta/execution/stdout' '/cromwell-executions/beast/e453bc3a-d369-4e0a-b265-de90bab392dd/call-combine_fasta/execution/stderr'
+tee '/cromwell-executions/beast/e453bc3a-d369-4e0a-b265-de90bab392dd/call-combine_fasta/execution/stdout' < "$oute453bc3a" &
+tee '/cromwell-executions/beast/e453bc3a-d369-4e0a-b265-de90bab392dd/call-combine_fasta/execution/stderr' < "$erre453bc3a" >&2 &
+(
+cd /cromwell-executions/beast/e453bc3a-d369-4e0a-b265-de90bab392dd/call-combine_fasta/execution
+
+
+cat /cromwell-executions/beast/e453bc3a-d369-4e0a-b265-de90bab392dd/call-combine_fasta/inputs/1385243121/fasta1 /cromwell-executions/beast/e453bc3a-d369-4e0a-b265-de90bab392dd/call-combine_fasta/inputs/1385243121/fasta2 > "combined.fasta"
+)  > "$oute453bc3a" 2> "$erre453bc3a"
+echo $? > /cromwell-executions/beast/e453bc3a-d369-4e0a-b265-de90bab392dd/call-combine_fasta/execution/rc.tmp
+(
+# add a .file in every empty directory to facilitate directory delocalization on the cloud
+cd /cromwell-executions/beast/e453bc3a-d369-4e0a-b265-de90bab392dd/call-combine_fasta/execution
+find . -type d -exec sh -c '[ -z "$(ls -A '"'"'{}'"'"')" ] && touch '"'"'{}'"'"'/.file' \;
+)
+(
+cd /cromwell-executions/beast/e453bc3a-d369-4e0a-b265-de90bab392dd/call-combine_fasta/execution
+sync
+
+
+)
+mv /cromwell-executions/beast/e453bc3a-d369-4e0a-b265-de90bab392dd/call-combine_fasta/execution/rc.tmp /cromwell-executions/beast/e453bc3a-d369-4e0a-b265-de90bab392dd/call-combine_fasta/execution/rc

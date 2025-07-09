@@ -1,0 +1,450 @@
+Installing package into ‘/usr/local/lib/R/site-library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘pixmap’, ‘sp’, ‘RcppArmadillo’, ‘Rcpp’, ‘digest’, ‘cli’, ‘lifecycle’, ‘magrittr’, ‘vctrs’, ‘ade4’, ‘segmented’, ‘glue’, ‘stringi’, ‘ape’, ‘rappdirs’, ‘purrr’, ‘rlang’, ‘seqinr’, ‘stringr’
+
+trying URL 'https://cloud.r-project.org/src/contrib/pixmap_0.4-13.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/sp_2.2-0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/RcppArmadillo_14.6.0-1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/Rcpp_1.1.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/digest_0.6.37.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/cli_3.6.5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/lifecycle_1.0.4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/magrittr_2.0.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/vctrs_0.6.5.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/ade4_1.7-23.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/segmented_2.1-4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/glue_1.8.0.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/stringi_1.8.7.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/ape_5.8-1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/rappdirs_0.3.3.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/purrr_1.0.4.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/rlang_1.1.6.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/seqinr_4.2-36.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/stringr_1.5.1.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/beautier_2.6.12.tar.gz'
+* installing *source* package ‘pixmap’ ...
+** this is package ‘pixmap’ version ‘0.4-13’
+** package ‘pixmap’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (pixmap)
+* installing *source* package ‘sp’ ...
+** this is package ‘sp’ version ‘2.2-0’
+** package ‘sp’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 14.2.0-19) 14.2.0’
+installing to /usr/local/lib/R/site-library/00LOCK-sp/00new/sp/libs
+** R
+** data
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (sp)
+* installing *source* package ‘Rcpp’ ...
+** this is package ‘Rcpp’ version ‘1.1.0’
+** package ‘Rcpp’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Debian 14.2.0-19) 14.2.0’
+installing to /usr/local/lib/R/site-library/00LOCK-Rcpp/00new/Rcpp/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (Rcpp)
+* installing *source* package ‘digest’ ...
+** this is package ‘digest’ version ‘0.6.37’
+** package ‘digest’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 14.2.0-19) 14.2.0’
+using C++ compiler: ‘g++ (Debian 14.2.0-19) 14.2.0’
+In file included from /usr/include/string.h:548,
+                 from blake3.c:11:
+In function ‘memcpy’,
+    inlined from ‘compress_subtree_to_parent_node’ at blake3.c:357:5,
+    inlined from ‘blake3_hasher_update.part.0’ at blake3.c:535:7:
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:29:10: warning: ‘__builtin_memcpy’ reading 64 bytes from a region of size 32 [-Wstringop-overread]
+   29 |   return __builtin___memcpy_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   30 |                                  __glibc_objsize0 (__dest));
+      |                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~
+blake3.c: In function ‘blake3_hasher_update.part.0’:
+blake3.c:353:11: note: source object ‘out_array’ of size 32
+  353 |   uint8_t out_array[MAX_SIMD_DEGREE_OR_2 * BLAKE3_OUT_LEN / 2];
+      |           ^~~~~~~~~
+In function ‘memcpy’,
+    inlined from ‘compress_parents_parallel’ at blake3.c:244:5,
+    inlined from ‘compress_subtree_to_parent_node’ at blake3.c:356:9,
+    inlined from ‘blake3_hasher_update.part.0’ at blake3.c:535:7:
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:29:10: warning: ‘__builtin___memcpy_chk’ writing 32 bytes into a region of size 0 overflows the destination [-Wstringop-overflow=]
+   29 |   return __builtin___memcpy_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   30 |                                  __glibc_objsize0 (__dest));
+      |                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~
+installing to /usr/local/lib/R/site-library/00LOCK-digest/00new/digest/libs
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (digest)
+* installing *source* package ‘cli’ ...
+** this is package ‘cli’ version ‘3.6.5’
+** package ‘cli’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 14.2.0-19) 14.2.0’
+installing to /usr/local/lib/R/site-library/00LOCK-cli/00new/cli/libs
+** R
+** exec
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (cli)
+* installing *source* package ‘magrittr’ ...
+** this is package ‘magrittr’ version ‘2.0.3’
+** package ‘magrittr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 14.2.0-19) 14.2.0’
+installing to /usr/local/lib/R/site-library/00LOCK-magrittr/00new/magrittr/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (magrittr)
+* installing *source* package ‘segmented’ ...
+** this is package ‘segmented’ version ‘2.1-4’
+** package ‘segmented’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (segmented)
+* installing *source* package ‘glue’ ...
+** this is package ‘glue’ version ‘1.8.0’
+** package ‘glue’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 14.2.0-19) 14.2.0’
+installing to /usr/local/lib/R/site-library/00LOCK-glue/00new/glue/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (glue)
+* installing *source* package ‘stringi’ ...
+** this is package ‘stringi’ version ‘1.8.7’
+** package ‘stringi’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Debian 14.2.0-19) 14.2.0’
+In file included from stri_ICU_settings.cpp:37:
+uconfig_local.h:42:9: warning: "UCONFIG_USE_WINDOWS_LCID_MAPPING_API" redefined
+   42 | #define UCONFIG_USE_WINDOWS_LCID_MAPPING_API 0
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/unicode/platform.h:24,
+                 from /usr/include/unicode/ptypes.h:46,
+                 from stri_external.h:52,
+                 from stri_stringi.h:36,
+                 from stri_ICU_settings.cpp:33:
+/usr/include/unicode/uconfig.h:391:12: note: this is the location of the previous definition
+  391 | #   define UCONFIG_USE_WINDOWS_LCID_MAPPING_API 1
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from stri_stringi.cpp:40:
+uconfig_local.h:42:9: warning: "UCONFIG_USE_WINDOWS_LCID_MAPPING_API" redefined
+   42 | #define UCONFIG_USE_WINDOWS_LCID_MAPPING_API 0
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/unicode/platform.h:24,
+                 from /usr/include/unicode/ptypes.h:46,
+                 from stri_external.h:52,
+                 from stri_stringi.h:36,
+                 from stri_stringi.cpp:33:
+/usr/include/unicode/uconfig.h:391:12: note: this is the location of the previous definition
+  391 | #   define UCONFIG_USE_WINDOWS_LCID_MAPPING_API 1
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+installing via 'install.libs.R' to /usr/local/lib/R/site-library/00LOCK-stringi/00new/stringi
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (stringi)
+* installing *source* package ‘rappdirs’ ...
+** this is package ‘rappdirs’ version ‘0.3.3’
+** package ‘rappdirs’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 14.2.0-19) 14.2.0’
+installing to /usr/local/lib/R/site-library/00LOCK-rappdirs/00new/rappdirs/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rappdirs)
+* installing *source* package ‘rlang’ ...
+** this is package ‘rlang’ version ‘1.1.6’
+** package ‘rlang’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 14.2.0-19) 14.2.0’
+installing to /usr/local/lib/R/site-library/00LOCK-rlang/00new/rlang/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rlang)
+* installing *source* package ‘RcppArmadillo’ ...
+** this is package ‘RcppArmadillo’ version ‘14.6.0-1’
+** package ‘RcppArmadillo’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Debian 14.2.0-19) 14.2.0’
+installing to /usr/local/lib/R/site-library/00LOCK-RcppArmadillo/00new/RcppArmadillo/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (RcppArmadillo)
+* installing *source* package ‘lifecycle’ ...
+** this is package ‘lifecycle’ version ‘1.0.4’
+** package ‘lifecycle’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (lifecycle)
+* installing *source* package ‘ape’ ...
+** this is package ‘ape’ version ‘5.8-1’
+** package ‘ape’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 14.2.0-19) 14.2.0’
+using C++ compiler: ‘g++ (Debian 14.2.0-19) 14.2.0’
+installing to /usr/local/lib/R/site-library/00LOCK-ape/00new/ape/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ape)
+* installing *source* package ‘vctrs’ ...
+** this is package ‘vctrs’ version ‘0.6.5’
+** package ‘vctrs’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 14.2.0-19) 14.2.0’
+installing to /usr/local/lib/R/site-library/00LOCK-vctrs/00new/vctrs/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (vctrs)
+* installing *source* package ‘ade4’ ...
+** this is package ‘ade4’ version ‘1.7-23’
+** package ‘ade4’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 14.2.0-19) 14.2.0’
+using C++ compiler: ‘g++ (Debian 14.2.0-19) 14.2.0’
+installing to /usr/local/lib/R/site-library/00LOCK-ade4/00new/ade4/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ade4)
+* installing *source* package ‘purrr’ ...
+** this is package ‘purrr’ version ‘1.0.4’
+** package ‘purrr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 14.2.0-19) 14.2.0’
+installing to /usr/local/lib/R/site-library/00LOCK-purrr/00new/purrr/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (purrr)
+* installing *source* package ‘seqinr’ ...
+** this is package ‘seqinr’ version ‘4.2-36’
+** package ‘seqinr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 14.2.0-19) 14.2.0’
+installing to /usr/local/lib/R/site-library/00LOCK-seqinr/00new/seqinr/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (seqinr)
+* installing *source* package ‘stringr’ ...
+** this is package ‘stringr’ version ‘1.5.1’
+** package ‘stringr’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (stringr)
+* installing *source* package ‘beautier’ ...
+** this is package ‘beautier’ version ‘2.6.12’
+** package ‘beautier’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (beautier)
+
+The downloaded source packages are in
+	‘/cromwell-executions/beast/e453bc3a-d369-4e0a-b265-de90bab392dd/call-xmlR/execution/tmp.Vs0qPo/Rtmp1V3mHv/downloaded_packages’
