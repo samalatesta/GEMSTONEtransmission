@@ -6,10 +6,10 @@ workflow test {
     email: "vkhadka@broadinstitute.org"
      }
 
-  call hello
+  call hello2
 }
 
-task hello {
+task hello2 {
   command {
     echo 'Hello world!'
   }
