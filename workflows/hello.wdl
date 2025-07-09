@@ -1,22 +1,19 @@
 version 1.0
 
 task hello {
-  input {
-    String name
-  }
   command {
-    echo "hello ${name}!"
+    echo 'Hello world!'
   }
+
   output {
     File response = stdout()
   }
+
   runtime {
-    docker: "ubuntu:impish-20220105"
+    docker: "quay.io/ga4gh-dream/dockstore-tool-helloworld:1.0.2"
   }
 }
 
 workflow test {
-  call hello {
-    input: name = "World"
-  }
+  call hello
 }
