@@ -2,8 +2,8 @@ version: 1.0
 workflows:
   - name: beast
     subclass: WDL
-    primaryDescriptorPath: /GEMSTONEtransmission/beast.wdl  # absolute path
-    readMePath: /GEMSTONEtransmission/README.md # absolute path
+    primaryDescriptorPath: /beast.wdl  # absolute path
+    readMePath: /README.md # absolute path
     authors:
       - name: Samantha Malatesta
         email: smalates@broadinstitute.org
