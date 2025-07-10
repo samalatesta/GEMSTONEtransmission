@@ -8,8 +8,6 @@ workflow straingst_strain {
 	}
   input {
     File straingst_report
-	File fastq_read1
-	File fastq_read2
 	String samplename
 	Float? coverage_cutoff
 	}
