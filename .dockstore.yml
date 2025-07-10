@@ -14,9 +14,9 @@ workflows:
       - name: Samantha Malatesta
         email: smalates@broadinstitute.org
 
-  - name: hello
+  - name: straingst_strain
     subclass: WDL
-    primaryDescriptorPath: /workflows/hello.wdl  # absolute path
+    primaryDescriptorPath: /workflows/straingst_strain.wdl  # absolute path
     authors:
       - name: Samantha Malatesta
         email: smalates@broadinstitute.org
