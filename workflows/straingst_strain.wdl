@@ -31,7 +31,7 @@ task read_straingst_report {
 	}
 	Float covg_cutoff_actual = select_first([covg_cutoff,0.8])
 	command <<<
-		python3 /scripts/read_tsv.py ~{straingst_report} ~{covg_cutoff_actual}
+		python3 ./scripts/read_tsv.py ~{straingst_report} ~{covg_cutoff_actual}
 	>>>
 	output {
 		String straingst_top_strain = read_string("STRAIN_REF")
