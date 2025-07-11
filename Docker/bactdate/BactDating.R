@@ -4,6 +4,7 @@ sink(log_conn, type = "output")
 sink(log_conn, type = "message")
 
 #install and load packages
+install.packages("devtools")
 devtools::install_github("xavierdidelot/BactDating")
 install.packages("ape")
 
