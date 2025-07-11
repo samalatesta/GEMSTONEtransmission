@@ -33,14 +33,6 @@ task BactDate_script {
 
 # Define the workflow that uses the task
 workflow BactDate {
-  input {
-    File gubbins_filtered_polymorphic_sites
-    File gubbins_final_tree
-    File gubbins_node_labelled_final_tree
-    File gubbins_filtered_polymorphic_sites
-    File gubbins_per_branch_statistics
-    File gubbins_recombination_predictions
-  }
 
   call BactDate_script {}
 
