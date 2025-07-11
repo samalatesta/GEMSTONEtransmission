@@ -11,7 +11,7 @@ task BactDate_script {
   }
 
   command <<<
-    Rscript ~/scripts/BactDating.R \
+    Rscript /scripts/BactDating.R \
       ~{gubbins_filtered_polymorphic_sites} \
       ~{gubbins_final_tree} \
       ~{gubbins_node_labelled_final_tree} \
@@ -26,15 +26,23 @@ task BactDate_script {
   }
 
   runtime {
-    docker: "rocker/tidyverse:latest" 
+    docker: "samalate/bactdate:latest" 
   }
 }
 
 
 # Define the workflow that uses the task
 workflow BactDate {
+  input {
+    File gubbins_filtered_polymorphic_sites
+    File gubbins_final_tree
+    File gubbins_node_labelled_final_tree
+    File gubbins_filtered_polymorphic_sites
+    File gubbins_per_branch_statistics
+    File gubbins_recombination_predictions
+  }
 
-  call BactDate_script {}
+  call BactDate_script
 
   output {
     File input_tree = BactDate_script.gubbins_tree
