@@ -11,7 +11,7 @@ task BactDate_script {
   }
 
   command <<<
-    Rscript /scripts/BactDating.R \
+    Rscript ~/scripts/BactDating.R \
       ~{gubbins_filtered_polymorphic_sites} \
       ~{gubbins_final_tree} \
       ~{gubbins_node_labelled_final_tree} \
