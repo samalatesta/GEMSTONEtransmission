@@ -1,26 +1,16 @@
 version 1.0
 
 task BactDate_script {
-  input {
-    File gubbins_filtered_polymorphic_sites
-    File gubbins_final_tree
-    File gubbins_node_labelled_final_tree
-    File gubbins_filtered_polymorphic_sites
-    File gubbins_per_branch_statistics
-    File gubbins_recombination_predictions
-  }
 
-    command<<<
-    # I would wrap this in quotes to prevent any side effects of 
-    # shell expansion
-    R --no-save <<Rscript
+    command <<<
+    Rscript -e '
     # Open log file
 log_conn <- file("BactDate.log", "w")
 sink(log_conn, type = "output")
 sink(log_conn, type = "message")
 
 #install and load packages
-install.packages("devtools")
+#install.packages("devtools")
 devtools::install_github("xavierdidelot/BactDating")
 install.packages("ape")
 
@@ -56,8 +46,9 @@ dev.off()
 sink(type = "output")
 sink(type = "message")
 close(log_conn)
-    Rscript
+    '
   >>>
+
 
   output {
     File gubbins_tree = glob("*tree.png")
@@ -76,7 +67,6 @@ workflow BactDate {
     File gubbins_filtered_polymorphic_sites
     File gubbins_final_tree
     File gubbins_node_labelled_final_tree
-    File gubbins_filtered_polymorphic_sites
     File gubbins_per_branch_statistics
     File gubbins_recombination_predictions
   }
