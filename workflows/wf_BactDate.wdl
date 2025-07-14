@@ -20,6 +20,9 @@ library(ape)
 
 print("Packages installed")
 
+print("Loaded files")
+list.files(path = ".")
+
 #change file extensions to make BactDating happy
 files <- list.files(pattern="*.nwk")
 newfiles <- gsub(".nwk$", ".tre", files)
