@@ -18,6 +18,8 @@ install.packages("ape")
 library(BactDating)
 library(ape)
 
+print("Packages installed")
+
 #change file extensions to make BactDating happy
 files <- list.files(pattern="*.nwk")
 newfiles <- gsub(".nwk$", ".tre", files)
@@ -28,8 +30,11 @@ files <- list.files(pattern="*.tsv")
 newfiles <- gsub(".tsv$", ".csv", files)
 file.rename(files, newfiles)
 
+print("Filenames changed")
+
 #prefix for Gubbins 
 prefix = sub("\\..*", "", list.files(pattern="*polymorphic_sites.fasta"))
+print("Prefix identified")
 
 #load Gubbins output
 t=loadGubbins(prefix)
