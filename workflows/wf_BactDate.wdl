@@ -25,11 +25,13 @@ list.files(path = ".")
 
 #change file extensions to make BactDating happy
 files <- list.files(pattern="*.nwk")
+print(files)
 newfiles <- gsub(".nwk$", ".tre", files)
 file.rename(files, newfiles)
 
 #needs .csv even though tab delimited in source code
 files <- list.files(pattern="*.tsv")
+print(files)
 newfiles <- gsub(".tsv$", ".csv", files)
 file.rename(files, newfiles)
 
@@ -37,7 +39,7 @@ print("Filenames changed")
 
 #prefix for Gubbins 
 prefix = sub("\\..*", "", list.files(pattern="*polymorphic_sites.fasta"))
-print("Prefix identified")
+print(paste0("Prefix is", prefix))
 
 #load Gubbins output
 t=loadGubbins(prefix)
