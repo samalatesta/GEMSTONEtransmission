@@ -33,9 +33,11 @@ prefix = sub("\\..*", "", list.files(pattern="*polymorphic_sites.fasta"))
 
 #load Gubbins output
 t=loadGubbins(prefix)
+print("Gubbins loaded")
 
 #remove reference tip
 t <- drop.tip(t, tip = "Reference")
+print("Ref removed")
 
 #plot input tree and save
 png(paste0(prefix, "_input_tree.png"))
