@@ -1,74 +1,58 @@
 version 1.0
 
 task BactDate_script {
+input {
+    Array[String] ids
+    Array[String] sample_dates
+    File gubbins_filtered_polymorphic_sites
+    File gubbins_final_tree
+    File gubbins_node_labelled_final_tree
+    File gubbins_per_branch_statistics
+    File gubbins_recombination_predictions
+    File Rscript
+    Int mcmc
+    String model
 
-    command <<<
-    Rscript -e '
-    # Open log file
-log_conn <- file("BactDate.log", "w")
-sink(log_conn, type = "output")
-sink(log_conn, type = "message")
-
-#install and load packages
-#install.packages("devtools")
-devtools::install_github("xavierdidelot/BactDating")
-install.packages("ape")
-
-
-library(BactDating)
-library(ape)
-
-print("Packages installed")
-
-print("Loaded files")
-list.files(path = ".")
-
-#change file extensions to make BactDating happy
-files <- list.files(pattern="*.nwk")
-print(files)
-newfiles <- gsub(".nwk$", ".tre", files)
-file.rename(files, newfiles)
-
-#needs .csv even though tab delimited in source code
-files <- list.files(pattern="*.tsv")
-print(files)
-newfiles <- gsub(".tsv$", ".csv", files)
-file.rename(files, newfiles)
-
-print("Filenames changed")
-
-#prefix for Gubbins 
-prefix = sub("\\..*", "", list.files(pattern="*polymorphic_sites.fasta"))
-print(paste0("Prefix is", prefix))
-
-#load Gubbins output
-t=loadGubbins(prefix)
-print("Gubbins loaded")
-
-#remove reference tip
-t <- drop.tip(t, tip = "Reference")
-print("Ref removed")
-
-#plot input tree and save
-png(paste0(prefix, "_input_tree.png"))
-plot(t)
-dev.off()
-
-# Close log file
-sink(type = "output")
-sink(type = "message")
-close(log_conn)
-    '
-  >>>
-
-
-  output {
-    File gubbins_tree = glob("*tree.png")
-    File rLog = "BactDate.log"
   }
+    command <<<
+    # Copy the R script and input data (if provided) to the task's working directory
+    cp ~{Rscript} .
+    
+    cp ~{gubbins_filtered_polymorphic_sites} .
+    cp ~{gubbins_final_tree} .
+    cp ~{gubbins_node_labelled_final_tree} .
+    cp ~{gubbins_per_branch_statistics} .
+    cp ~{gubbins_recombination_predictions} .
 
+       
+    declare -a bash_array=(~{sep=" " ids})
+    printf "%s\n" "${bash_array[@]}" > ids.txt
+    declare -a bash_array=(~{sep=" " sample_dates})
+    printf "%s\n" "${bash_array[@]}" > dates.txt
+
+        Rscript BactDating.R "~{model}" \
+           "ids.txt" \
+            "dates.txt" \
+            ~{mcmc} \
+             ~{gubbins_filtered_polymorphic_sites} \
+            ~{gubbins_final_tree} \
+            ~{gubbins_node_labelled_final_tree} \
+            ~{gubbins_per_branch_statistics} \
+            ~{gubbins_recombination_predictions} \ 
+             
+    >>>
+        output {
+            File stdout = stdout()
+            File rlog = "BactDate.log"
+            String model_out = "~{model}"
+            Array[File] gubbins_tree = glob("*_gubbins_tree.pdf")
+            Array[File] mcmc_trace = glob("*_trace.pdf")
+            Array[File] dated_tree = glob("*_bactdate_tree.pdf")
+            Array[File] nwktree = glob("*_dated_tree.nwk")
+            
+        }
   runtime {
-    docker: "rocker/tidyverse:latest" 
+    docker: "rocker/r-ver:latest" 
   }
 }
 
@@ -76,18 +60,30 @@ close(log_conn)
 # Define the workflow that uses the task
 workflow BactDate {
   input {
+    Array[String] ids
+    Array[String] sample_dates
     File gubbins_filtered_polymorphic_sites
     File gubbins_final_tree
     File gubbins_node_labelled_final_tree
     File gubbins_per_branch_statistics
     File gubbins_recombination_predictions
+    File Rscript
+    Int mcmc
+    String model
   }
 
-  call BactDate_script
+  call BactDate_script{
+    input: ids=ids, sample_dates=sample_dates, model=model, mcmc=mcmc, gubbins_filtered_polymorphic_sites = gubbins_filtered_polymorphic_sites, gubbins_final_tree=gubbins_final_tree, gubbins_node_labelled_final_tree=gubbins_node_labelled_final_tree, gubbins_per_branch_statistics=gubbins_per_branch_statistics, gubbins_recombination_predictions=gubbins_recombination_predictions, Rscript=Rscript
+  }
 
   output {
-    File input_tree = BactDate_script.gubbins_tree
-    File rLog = BactDate_script.rLog
+    Array[File] input_tree = BactDate_script.gubbins_tree
+    File rLog = BactDate_script.rlog
+    File out = BactDate_script.stdout
+    String model_out = BactDate_script.model_out
+    Array[File] dated_tree = BactDate_script.dated_tree
+    Array[File] mcmc_trace = BactDate_script.mcmc_trace
+    Array[File] nwktree = BactDate_script.nwktree
   }
 }
 
