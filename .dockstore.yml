@@ -27,3 +27,10 @@ workflows:
     authors:
       - name: Samantha Malatesta
         email: smalates@broadinstitute.org
+        
+  - name: BactDating_streamline
+    subclass: WDL
+    primaryDescriptorPath: /workflows/snippy_tree/wf_snippy_tree.wdl  # absolute path
+    authors:
+      - name: Samantha Malatesta
+        email: smalates@broadinstitute.org
