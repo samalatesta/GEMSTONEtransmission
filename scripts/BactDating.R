@@ -3,7 +3,15 @@ log_conn <- file("BactDate.log", "w")
 sink(log_conn, type = "output")
 sink(log_conn, type = "message")
 
+args <- commandArgs(trailingOnly = TRUE)
+file1 <- args[grep("--file1", args) + 1]
+file2 <- args[grep("--file2", args) + 1]
+file3 <-  args[grep("--file3", args) + 1]
+file4 <- args[grep("--file4", args) + 1]
+file5 <- args[grep("--file5", args) + 1]
+
 #install and load packages
+install.packages("devtools")
 devtools::install_github("xavierdidelot/BactDating")
 install.packages("ape")
 
