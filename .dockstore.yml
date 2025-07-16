@@ -13,17 +13,10 @@ workflows:
     authors:
       - name: Samantha Malatesta
         email: smalates@broadinstitute.org
-
-  - name: straingst_strain
-    subclass: WDL
-    primaryDescriptorPath: /workflows/straingst_strain.wdl  # absolute path
-    authors:
-      - name: Samantha Malatesta
-        email: smalates@broadinstitute.org
         
   - name: BactDating
     subclass: WDL
-    primaryDescriptorPath: /Docker/bactdate/wf_BactDate.wdl  # absolute path
+    primaryDescriptorPath: /workflows/bactdate/wf_BactDate.wdl  # absolute path
     authors:
       - name: Samantha Malatesta
         email: smalates@broadinstitute.org
