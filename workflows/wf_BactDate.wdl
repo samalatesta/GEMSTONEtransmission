@@ -49,7 +49,7 @@ input {
             
         }
   runtime {
-    docker: "samalate/bactdate:latest" 
+    docker: "samalate/bactdate:v1" 
   }
 }
 
