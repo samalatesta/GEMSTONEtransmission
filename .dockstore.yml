@@ -23,7 +23,7 @@ workflows:
         
   - name: BactDating
     subclass: WDL
-    primaryDescriptorPath: /workflows/wf_BactDate.wdl  # absolute path
+    primaryDescriptorPath: /Docker/bactdate/wf_BactDate.wdl  # absolute path
     authors:
       - name: Samantha Malatesta
         email: smalates@broadinstitute.org
