@@ -1,5 +1,5 @@
 # Start with the rocker image
-FROM rocker/r-ver:4.4
+FROM --platform=linux/amd64 rocker/r-ver:4.4
 
 # Install cran packages
 RUN R -e "install.packages('remotes', dependencies=TRUE, repos='http://cran.rstudio.com/')" 

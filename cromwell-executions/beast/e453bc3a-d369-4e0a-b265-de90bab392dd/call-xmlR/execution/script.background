@@ -1,3 +1,0 @@
-#!/bin/bash
-'/bin/bash' '/Users/samanthamalatesta/Documents/Projects/GEMSTONEtransmission/GEMSTONEtransmission/cromwell-executions/beast/e453bc3a-d369-4e0a-b265-de90bab392dd/call-xmlR/execution/script.submit' < /dev/null || { rc=$?; if [ "$rc" -gt "128" ]; then echo $rc; else echo -1; fi } > /Users/samanthamalatesta/Documents/Projects/GEMSTONEtransmission/GEMSTONEtransmission/cromwell-executions/beast/e453bc3a-d369-4e0a-b265-de90bab392dd/call-xmlR/execution/rc &
-echo $!
