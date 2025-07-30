@@ -46,10 +46,12 @@ input {
             Array[File] mcmc_trace = glob("*_trace.pdf")
             Array[File] dated_tree = glob("*_bactdate_tree.pdf")
             Array[File] nwktree = glob("*_dated_tree.nwk")
+            Array[File] mcmc_out = glob("*_mcmc.rda")
+            Array[File] estdates = glob("*_dates.txt")
             
         }
   runtime {
-    docker: "samalate/bactdate:v1" 
+    docker: "samalate/bactdate:v1.1" 
   }
 }
 
@@ -80,6 +82,8 @@ workflow BactDate {
     Array[File] dated_tree = BactDate_script.dated_tree
     Array[File] mcmc_trace = BactDate_script.mcmc_trace
     Array[File] nwktree = BactDate_script.nwktree
+    Array[File] mcmc_output = BactDate_script.mcmc_out
+    Array[File] tree_dates = BactDate_script.estdates
   }
 }
 

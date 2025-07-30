@@ -103,8 +103,16 @@ pdf(paste0( prefix, "_bactdate_tree.pdf"))
 plot(res, type="tree")
 dev.off()
 
+#save mcmc code to R object for post hoc analysis
+mcmc = as.mcmc.resBactDating(res, burnin = 0.5)
+save(mcmc, file= paste0(prefix, "_mcmc.rda"))
+print("MCMC saved")
+
 #nwk for dated tree
 write.tree(res$tree,paste0( prefix, "_dated_tree.nwk") )
+
+#estimated dates
+write.table(nodeDates(res$tree), paste0( prefix, "_node_dates.txt") )
 
 print("Output saved")
 
