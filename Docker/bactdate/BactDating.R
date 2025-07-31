@@ -1,5 +1,5 @@
 ###Author: Samantha Malatesta
-###Date: 07/15/2025
+###Date: 07/31/2025
 ###Email: smalates@broadinstitute.org
 ###Purpose: Rscript for BactDating 
 ###Inputs: Gubbins files, mcmc iters, id and date arrays, model specification
@@ -84,9 +84,17 @@ d=meta_sub$d
 #make names of d the id names
 names(d) <-meta_sub$id
 
+#root tree using linear regression analysis 
+rooted=initRoot(t, d, mtry = 100, useRec = T)
+
 #run bactdate
-res=bactdate(t,d,nbIts = mcmc_arg, showProgress = F, useRec = T, model=model_arg)
+res=bactdate(rooted,d,nbIts = mcmc_arg, showProgress = F, useRec = T, model=model_arg)
 print("BactDate run complete")
+
+#plot root to tip analysis
+pdf(paste0( prefix, "_roottotip.pdf"))
+roottotip(t, d)
+dev.off()
 
 #plot input tree and save
 pdf(paste0( prefix, "_gubbins_tree.pdf"))
