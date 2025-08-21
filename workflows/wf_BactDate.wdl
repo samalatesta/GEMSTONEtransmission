@@ -4,11 +4,13 @@ task BactDate_script {
 input {
     Array[String] ids
     Array[String] sample_dates
-    File gubbins_filtered_polymorphic_sites
-    File gubbins_final_tree
-    File gubbins_node_labelled_final_tree
-    File gubbins_per_branch_statistics
-    File gubbins_recombination_predictions
+    String useRec
+    File? gubbins_filtered_polymorphic_sites
+    File? gubbins_final_tree
+    File? gubbins_node_labelled_final_tree
+    File? gubbins_per_branch_statistics
+    File? gubbins_recombination_predictions
+    File? input_tree
     Int mcmc
     String model
 
@@ -20,6 +22,7 @@ input {
     cp ~{gubbins_node_labelled_final_tree} .
     cp ~{gubbins_per_branch_statistics} .
     cp ~{gubbins_recombination_predictions} .
+    cp ~{input_tree} .
 
        
     declare -a bash_array=(~{sep=" " ids})
@@ -27,32 +30,34 @@ input {
     declare -a bash_array=(~{sep=" " sample_dates})
     printf "%s\n" "${bash_array[@]}" > dates.txt
 
-        Rscript /app/BactDating.R "~{model}" \
+        Rscript /app/BactDating.R "~{useRec}" \
+           "~{model}" \
            "ids.txt" \
             "dates.txt" \
             ~{mcmc} \
+            ~{input_tree} \
              ~{gubbins_filtered_polymorphic_sites} \
             ~{gubbins_final_tree} \
             ~{gubbins_node_labelled_final_tree} \
             ~{gubbins_per_branch_statistics} \
-            ~{gubbins_recombination_predictions} \ 
+            ~{gubbins_recombination_predictions} \  
              
     >>>
         output {
             File stdout = stdout()
             File rlog = "BactDate.log"
             String model_out = "~{model}"
-            Array[File] gubbins_tree = glob("*_gubbins_tree.pdf")
+            Array[File] initial_tree = glob("*_input_tree.pdf")
             Array[File] mcmc_trace = glob("*_trace.pdf")
             Array[File] dated_tree = glob("*_bactdate_tree.pdf")
-            Array[File] nwktree = glob("*_dated_tree.nwk")
+            Array[File] nwktree = glob("*_dated_tree.rda")
             Array[File] mcmc_out = glob("*_mcmc.rda")
             Array[File] estdates = glob("*_dates.txt")
             Array[File] rtt = glob("*_roottotip.pdf")
             
         }
   runtime {
-    docker: "samalate/bactdate:v1.2" 
+    docker: "samalate/bactdate:v1.3" 
   }
 }
 
@@ -62,21 +67,23 @@ workflow BactDate {
   input {
     Array[String] ids
     Array[String] sample_dates
-    File gubbins_filtered_polymorphic_sites
-    File gubbins_final_tree
-    File gubbins_node_labelled_final_tree
-    File gubbins_per_branch_statistics
-    File gubbins_recombination_predictions
+    String useRec
+    File? gubbins_filtered_polymorphic_sites
+    File? gubbins_final_tree
+    File? gubbins_node_labelled_final_tree
+    File? gubbins_per_branch_statistics
+    File? gubbins_recombination_predictions
+    File? input_tree
     Int mcmc
     String model
   }
 
   call BactDate_script{
-    input: ids=ids, sample_dates=sample_dates, model=model, mcmc=mcmc, gubbins_filtered_polymorphic_sites = gubbins_filtered_polymorphic_sites, gubbins_final_tree=gubbins_final_tree, gubbins_node_labelled_final_tree=gubbins_node_labelled_final_tree, gubbins_per_branch_statistics=gubbins_per_branch_statistics, gubbins_recombination_predictions=gubbins_recombination_predictions
+    input: ids=ids,useRec=useRec,input_tree=input_tree, sample_dates=sample_dates, model=model, mcmc=mcmc, gubbins_filtered_polymorphic_sites = gubbins_filtered_polymorphic_sites, gubbins_final_tree=gubbins_final_tree, gubbins_node_labelled_final_tree=gubbins_node_labelled_final_tree, gubbins_per_branch_statistics=gubbins_per_branch_statistics, gubbins_recombination_predictions=gubbins_recombination_predictions
   }
 
   output {
-    Array[File] input_tree = BactDate_script.gubbins_tree
+    Array[File] input_tree = BactDate_script.initial_tree
     File rLog = BactDate_script.rlog
     File out = BactDate_script.stdout
     String model_out = BactDate_script.model_out
