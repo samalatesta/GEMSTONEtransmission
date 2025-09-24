@@ -16,8 +16,8 @@ Sys.time()
 args <- commandArgs(trailingOnly = TRUE)
 tree_file <- args[1]
 max_date <- args[2]
-mcmc <- args[3]
-w.shape <- args[4]
+mcmc <- as.numeric(args[3])
+w.shape <- as.numeric(args[4])
 w.scale <- as.numeric(args[5])
 
 print("Check args correct")
@@ -31,6 +31,23 @@ w.scale
 library(TransPhylo2)
 library(ape)
 library(dplyr)
+
+#plot tree to check input 
+t = read.tree(tree_file)
+plot(t)
+print("Input tree")
+
+ptree<-ptreeFromPhylo(t,dateLastSample=2007.94)
+
+dateT=2008
+
+res<-inferTTree(ptree,mcmcIterations=1000,w.shape=w.shape,w.scale=w.scale,dateT=dateT)
+
+print("Run TransPhylo2")
+
+#save output
+save(res,file=paste0( "transphylo2", "_results.rda") )
+
 
 print("Output saved")
 
