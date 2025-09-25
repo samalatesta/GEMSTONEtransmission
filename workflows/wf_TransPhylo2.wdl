@@ -35,7 +35,7 @@ input {
             
         }
   runtime {
-    docker: "samalate/transphylo2:test" 
+    docker: "samalate/transphylo2:v1.0" 
   }
 }
 
