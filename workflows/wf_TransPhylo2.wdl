@@ -10,7 +10,7 @@ input {
     Int? w_shape
     Float? w_scale
   }
-    command <<<
+    command <<< 
 
     cp ~{dated_tree} .
 
