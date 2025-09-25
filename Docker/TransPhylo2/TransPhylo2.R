@@ -1,8 +1,8 @@
 ###Author: Samantha Malatesta
-###Date: 09/12/2025
+###Date: 09/25/2025
 ###Email: smalates@broadinstitute.org
 ###Purpose: Rscript for TransPhylo2 
-###Inputs: dated tree, max date, mcmc, w.shape, w.scale
+###Inputs: dated tree, max date, mcmc, w.shape, w.scale, sample ids, swab dates
 
 # Open log file
 log_conn <- file("TransPhylo2.log", "w")
@@ -31,23 +31,43 @@ w.scale
 library(TransPhylo2)
 library(ape)
 library(dplyr)
+library(lubridate)
+
+#make df of dates and ids
+ids_temp = read.table("ids.txt")
+dates_temp = read.table("dates.txt")
+meta = cbind(ids_temp, dates_temp)
+colnames(meta) = c("id", "date")
+meta$date <- as.numeric(meta$date)
+print("IDs and dates")
+head(meta)
+
 
 #plot tree to check input 
 t = read.tree(tree_file)
 plot(t)
+print(t$tip.label)
 print("Input tree")
 
-ptree<-ptreeFromPhylo(t,dateLastSample=2007.94)
+#prep for TransPhylo2 run
+meta_sub <- meta %>% filter(as.character(id) %in% t$tip.label) %>% select(id, date) %>% mutate(d=as.Date("2018-01-01")+as.numeric(date))
+meta_sub$d <- decimal_date(meta_sub$d)
+print(meta_sub)
 
-dateT=2008
+lastSamp = as.numeric(max(meta_sub$d))
 
-res<-inferTTree(ptree,mcmcIterations=1000,w.shape=w.shape,w.scale=w.scale,dateT=dateT)
+ptree<-ptreeFromPhylo(t,dateLastSample=lastSamp)
+
+dateT= decimal_date(as.Date(max_date))
+
+paste0("MCMC iterations ", mcmc, ", w.shape ", w.shape, ", w.scale ", w.scale, ", dateT ", dateT)
+
+res<-inferTTree(ptree,mcmcIterations=mcmc,w.shape=w.shape,w.scale=w.scale,dateT=dateT)
 
 print("Run TransPhylo2")
 
 #save output
 save(res,file=paste0( "transphylo2", "_results.rda") )
-
 
 print("Output saved")
 
