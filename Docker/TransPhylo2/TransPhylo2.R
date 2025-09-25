@@ -44,13 +44,13 @@ head(meta)
 
 
 #plot tree to check input 
-t = read.tree(tree_file)
+t = readRDS(tree_file) 
 plot(t)
 print(t$tip.label)
 print("Input tree")
 
 #prep for TransPhylo2 run
-meta_sub <- meta %>% filter(as.character(id) %in% t$tip.label) %>% select(id, date) %>% mutate(d=as.Date("2018-01-01")+as.numeric(date))
+meta_sub <- meta %>% filter(as.character(id) %in% t$tip.label) %>% select(id, date) %>% mutate(d=as.Date("2018-01-01")+(as.numeric(date)))
 meta_sub$d <- decimal_date(meta_sub$d)
 print(meta_sub)
 
