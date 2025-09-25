@@ -27,3 +27,10 @@ workflows:
     authors:
       - name: Samantha Malatesta
         email: smalates@broadinstitute.org
+
+  - name: TransPhylo2
+    subclass: WDL
+    primaryDescriptorPath: /workflows/TransPhylo2.wdl  # absolute path
+    authors:
+      - name: Samantha Malatesta
+        email: smalates@broadinstitute.org
